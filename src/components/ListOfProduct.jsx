@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router";
+import { useBasket } from "../context/BasketContext";
 
 const ListOfProduct = () => {
   const products = [
@@ -9,8 +10,24 @@ const ListOfProduct = () => {
     { id: 4, productName: "OnePlus 9", price: 700 },
     { id: 5, productName: "MacBook Air", price: 1200 },
   ];
+  const [addedProduct, setAddedProduct] = useState([]);
   const [toggleBasket, setToggleBasket] = useState(false);
   const navigate = useNavigate();
+
+  const { product, addProduct } = useBasket();
+
+  const handleAddElement = (product) => {
+    setAddedProduct((prev) => [
+      ...prev,
+      {
+        id: product.id,
+        productName: product.productName,
+        price: product.price,
+      },
+    ]);
+    addProduct(product);
+  };
+
   return (
     <div>
       <button
@@ -38,7 +55,7 @@ const ListOfProduct = () => {
             </li>
           </ul>
 
-          <button>Add</button>
+          <button onClick={() => handleAddElement(product)}>Add</button>
         </div>
       ))}
     </div>
