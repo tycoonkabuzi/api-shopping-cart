@@ -36,7 +36,10 @@ const ListOfProduct = () => {
           navigate("/basket");
         }}
       >
-        Baskets
+        Baskets{" "}
+        <span style={{ backgroundColor: "red", color: "white" }}>
+          {product.length !== 0 ? product.length : ""}
+        </span>
       </button>
 
       {toggleBasket && <Outlet />}

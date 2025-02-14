@@ -33,7 +33,7 @@ const Basket = () => {
         <p> Basket is empty</p>
       )}
 
-      <h2>{total ? `Total : ${total}` : ``}</h2>
+      <h2>{total ? `Total : ${total} $` : ``}</h2>
     </div>
   );
 };
